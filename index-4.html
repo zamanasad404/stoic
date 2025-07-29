@@ -1,0 +1,127 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Daily Stoic Quote</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: 'Georgia', serif;
+      background-color: #f4f4f4;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+    }
+    h1 {
+      font-size: 1.8em;
+    }
+    button {
+      padding: 15px 30px;
+      font-size: 1em;
+      background-color: #000;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    #quote-box {
+      margin-top: 30px;
+      font-style: italic;
+      font-size: 1.2em;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 1s ease-in-out, visibility 1s ease-in-out;
+    }
+    .show {
+      opacity: 1;
+      visibility: visible;
+    }
+    .ad-placeholder {
+      margin-top: 40px;
+      width: 100%;
+      max-width: 320px;
+      height: 100px;
+      background-color: #ccc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #666;
+      font-size: 0.9em;
+      border-radius: 10px;
+    }
+    #whatsapp-share {
+      margin-top: 20px;
+      display: none;
+      background-color: #25D366;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Reveal Today's Stoic Quote</h1>
+
+  <button id="reveal-btn" onclick="revealQuote()">Reveal Quote</button>
+
+  <div id="quote-box"></div>
+
+  <a id="whatsapp-share" href="#" target="_blank">Share on WhatsApp</a>
+
+  <div class="ad-placeholder">
+    Ad Space (e.g. Google AdSense)
+  </div>
+
+  <script>
+    const quotes = [
+      "“You have power over your mind — not outside events. Realize this, and you will find strength.” — Marcus Aurelius",
+      "“It is not death that a man should fear, but he should fear never beginning to live.” — Marcus Aurelius",
+      "“He who fears death will never do anything worth of a man who is alive.” — Seneca",
+      "“We suffer more often in imagination than in reality.” — Seneca",
+      "“If it is not right, do not do it, if it is not true, do not say it.” — Marcus Aurelius",
+      "“Wealth consists not in having great possessions, but in having few wants.” — Epictetus",
+      "“First say to yourself what you would be; and then do what you have to do.” — Epictetus",
+      "“The best revenge is not to be like your enemy.” — Marcus Aurelius",
+      "“The meaning of life is to find your gift. The purpose of life is to give it away.” — Pablo Picasso",
+      "“He who has a why to live can bear almost any how.” — Friedrich Nietzsche"
+    ];
+
+    function revealQuote() {
+      const quoteBox = document.getElementById("quote-box");
+      const shareBtn = document.getElementById("whatsapp-share");
+      const revealBtn = document.getElementById("reveal-btn");
+
+      const randomIndex = Math.floor(Math.random() * quotes.length);
+      const quote = quotes[randomIndex];
+
+      quoteBox.textContent = quote;
+      quoteBox.classList.remove('show');
+      void quoteBox.offsetWidth;
+      quoteBox.classList.add('show');
+
+      const pageUrl = window.location.href;
+      const message = "Check out this stoic quote: " + quote + " – Read more at " + pageUrl;
+      shareBtn.href = `https://wa.me/?text=${encodeURIComponent(message)}`;
+      shareBtn.style.display = "inline-block";
+
+      revealBtn.textContent = "Next Quote";
+    }
+
+    window.onload = function() {
+      setTimeout(function() {
+        alert("Come back tomorrow for your daily motivation!");
+      }, 500);
+    };
+  </script>
+</body>
+</html>
